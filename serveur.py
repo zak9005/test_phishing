@@ -2,6 +2,10 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "<h1>Bienvenue sur mon serveur Flask !</h1>"
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
@@ -14,3 +18,4 @@ def login():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
