@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template('faux_login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/faux_login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
